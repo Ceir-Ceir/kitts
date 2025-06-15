@@ -16,14 +16,11 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Reset form
     setFormData({ name: '', email: '', company: '', message: '' });
     setIsSubmitting(false);
     
-    // Show success message (you can implement this)
     alert('Thank you for your message! We will get back to you soon.');
   };
 
@@ -42,7 +39,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Work Together</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let&apos;s Work Together</h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Ready to take your business to the next level? Get in touch with us today.
           </p>
