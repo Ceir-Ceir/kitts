@@ -23,7 +23,7 @@ export default function About() {
                   <span className="text-2xl">🎯</span>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-1">Results-Driven</h3>
+                  <h3 className="font-bold mb-1">Results Driven</h3>
                   <p className="text-gray-600 dark:text-gray-300">We focus on measurable outcomes and ROI</p>
                 </div>
               </div>
