@@ -24,7 +24,7 @@ export default function About() {
                 </div>
                 <div>
                   <h3 className="font-bold mb-1">Results Driven</h3>
-                  <p className="text-gray-600 dark:text-gray-300">We focus on measurable outcomes and ROI</p>
+                  <p className="text-gray-600 dark:text-gray-300">We focus on driving traffic & ROI</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
