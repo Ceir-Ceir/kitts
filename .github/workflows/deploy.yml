@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: read  # Changed from write
+  contents: read
   pages: write
   id-token: write
 
@@ -25,27 +25,30 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
+        working-directory: ./kitts-marketing  # Add this line
         run: npm install
 
       - name: Build Next.js static site
+        working-directory: ./kitts-marketing  # Add this line
         run: npm run build
 
-      - name: Verify /out directory
+      - name: List build output
+        working-directory: ./kitts-marketing  # Add this line
         run: |
-          if [ ! -d "out" ]; then
-            echo "❌ ERROR: Export failed — /out directory not found."
-            exit 1
-          fi
-          ls -la out/  # Show what's in the directory
+          echo "Contents of current directory:"
+          ls -la
+          echo "Contents of out directory:"
+          ls -la out/ || echo "No out directory found"
 
       - name: Add deployment files
+        working-directory: ./kitts-marketing  # Add this line
         run: |
           touch out/.nojekyll
           echo 'kittsmarketing.com' > out/CNAME
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4  # Updated to v4
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./kitts-marketing/out  # Update this path
           force_orphan: true
