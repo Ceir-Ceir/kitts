@@ -1,3 +1,4 @@
+@"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
@@ -7,4 +8,4 @@ const nextConfig = {
   reactStrictMode: true
 };
 
-export default nextConfig;
+module.exports = nextConfig;
