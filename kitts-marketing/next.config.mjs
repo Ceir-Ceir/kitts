@@ -4,7 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  assetPrefix: './',
   reactStrictMode: true
 };
 

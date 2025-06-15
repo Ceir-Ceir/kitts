@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read  # Changed from write
   pages: write
   id-token: write
 
@@ -18,13 +18,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'  # Add caching
 
       - name: Install dependencies
         run: npm ci
@@ -32,22 +31,21 @@ jobs:
       - name: Build Next.js static site
         run: npm run build
 
-      # Verify that output directory exists
       - name: Verify /out directory
         run: |
           if [ ! -d "out" ]; then
             echo "❌ ERROR: Export failed — /out directory not found."
             exit 1
           fi
+          ls -la out/  # Show what's in the directory
 
-      - name: Add deployment files (CNAME and nojekyll)
+      - name: Add deployment files
         run: |
           touch out/.nojekyll
           echo 'kittsmarketing.com' > out/CNAME
-          cp out/index.html out/404.html || echo "No index.html found for fallback."
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4  # Updated to v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
